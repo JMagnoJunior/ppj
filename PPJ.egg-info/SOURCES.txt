@@ -21,6 +21,7 @@ ppj/scripts/initializedb.py
 ppj/static/css/default.css
 ppj/static/css/theme.css
 ppj/static/css/theme.min.css
+ppj/static/img/mpython.jpg
 ppj/static/img/pyramid-16x16.png
 ppj/static/img/pyramid.png
 ppj/static/jquery-ui/jquery-1.9.1.js
@@ -29,6 +30,7 @@ ppj/static/jquery-ui/jquery-ui.js
 ppj/static/js/angular.min.js
 ppj/static/js/jquery.min.js
 ppj/static/js/ppj.js
+ppj/templates/apresentacao.jinja2
 ppj/templates/base.jinja2
 ppj/templates/consulta_dependentes.jinja2
 ppj/templates/detalhe_cliente.jinja2
@@ -38,3 +40,10 @@ ppj/templates/inclusao_cliente.jinja2
 ppj/templates/resultado.jinja2
 ppj/templates/tabela_cliente.jinja2
 ppj/templates/tabela_dependentes.jinja2
+ppj/templates/slides/slide1.jinja2
+ppj/templates/slides/slide2.jinja2
+ppj/templates/slides/slide3.jinja2
+ppj/templates/slides/slide4.jinja2
+ppj/templates/slides/slide5.jinja2
+ppj/templates/slides/slide6.jinja2
+ppj/templates/slides/slide7.jinja2
