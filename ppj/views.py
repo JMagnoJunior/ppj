@@ -37,9 +37,16 @@ def slide6(request):
     return {}
 
 @view_config(route_name='slide7', renderer='templates/slides/slide7.jinja2')
-def slide6(request):
+def slide7(request):
     return {}
 
+@view_config(route_name='slide8', renderer='templates/slides/slide8.jinja2')
+def slide8(request):
+    return {}    
+
+@view_config(route_name='slide9', renderer='templates/slides/slide9.jinja2')
+def slide9(request):
+    return {}    
 
 # ----------------------------------------
 # -- Cliente  -- #

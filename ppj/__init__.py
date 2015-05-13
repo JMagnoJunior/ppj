@@ -21,6 +21,8 @@ def main(global_config, **settings):
     config.add_route('slide5', 'slide5')
     config.add_route('slide6', 'slide6')
     config.add_route('slide7', 'slide7')
+    config.add_route('slide8', 'slide8')
+    config.add_route('slide9', 'slide9')
     config.add_route('index_cliente', 'index_cliente')
     config.add_route('clientes', 'clientes')
     config.add_route('inclusao_cliente', 'incluir/cliente')
