@@ -11,7 +11,7 @@ from .models import (DBSession, Cliente, Dependente)
 @view_config(route_name='index', renderer='templates/apresentacao.jinja2')
 def index(request):
     return {}
-
+# pylint: disable=W0613
 @view_config(route_name='slide1', renderer='templates/slides/slide1.jinja2')
 def slide1(request):
     return {}
