@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="${request.locale_name}">
+  <head>
+    <meta charset="utf-8">
+  
+  </head>
+
+  <body >
+  	<div>
+  		<br />
+  		<br />
+  		<br />
+  		<center>
+  			<h2>{% block titulo_slide %}A linguagem Python! {% endblock %}</h2> <br />
+		</center>
+  	{%block conteudo %}  	
+  	<center>
+	  	<a href="slide1">
+	  		<img src="{{request.static_url('ppj:static/img/mpython.jpg')}}" />
+	  	</a>
+	</center>
+	{% endblock %}
+
+
+	<a href="{% block pagina_anterior %} {% endblock%}" style="float:left">
+	  		<img src="{{request.static_url('ppj:static/img/voltar.jpeg')}}" />
+	 </a>  		
+	<a href="{% block proxima_pagina %} slide1 {% endblock%}" style="float:right">
+	  		<img src="{{request.static_url('ppj:static/img/seta.jpeg')}}" />
+	 </a>
+
+  </div>
+  	
+  </body>
+</html>

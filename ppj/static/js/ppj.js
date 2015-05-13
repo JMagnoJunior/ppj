@@ -61,10 +61,18 @@ app.controller('clienteCtrl',  function($scope) {
 		   	contentType: 'application/json; charset=utf-8',
 		   	data: JSON.stringify({ nome: $("#nome_cliente").val(), data_nascimento: $("#data_nascimento_cliente").val(),sexo:$("#sexo_cliente").val(),estado_civil:$("#estado_civil_cliente").val(),dependentes:dependentes }),
 		   	success: function(result){  
+		   		$("#nome_cliente").val("")
+				$("#data_nascimento_cliente").val("")
+				$("#sexo_cliente").val("")
+				$("#estado_civil_cliente").val("")
+				$(".dependente").each(function() {  
+		   			$(this).find(".nome_dependente").val("");
+		   			$(this).find(".sexo_dependente").val("")
+				});
+		 
 	        	$("#resultado").html(result)
 	       },
-		   error: function (xhr, ajaxOptions, thrownError) {
-		   		alert(xhr.responseText)
+		   error: function (xhr, ajaxOptions, thrownError) {		   		
         		$("#resultado").html("<span class='erro'>Nao foi possivel incluir o registro</span>")	
       	   },
 

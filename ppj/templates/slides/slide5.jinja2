@@ -1,0 +1,40 @@
+{% extends "../apresentacao.jinja2" %}
+{% block titulo_slide %} As Ferramentas {% endblock %}
+
+{%block conteudo %}
+Templates
+<ul>
+	<li>Jinja2</li>
+	<li>Chameleon</li>
+	<li>Mako Template</li>
+</ul>
+
+Frameworks MVC?*
+<ul>
+	<li>Pyramid</li>
+	<li>Django</li>
+	<li>Flask</li>
+	<li>Cherypy</li>
+	<li>Twisted Matrix</li>
+</ul>
+
+ORM
+<ul>
+	<li>SQLAlchemy</li>
+	<li>DJango ORM</li>
+</ul>
+
+Etc...
+<p style="font-size:14px">
+*Algumas dessas ferramentas não devem vistas como framework's MVC. Utilizei essa nomeclatura para facilitar a associação com o que conhecemos do mundo java.
+</p>
+
+{% endblock %}
+
+{% block proxima_pagina %}
+slide6
+{% endblock %}
+
+{% block pagina_anterior %}
+slide4
+{% endblock %}

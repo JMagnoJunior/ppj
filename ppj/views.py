@@ -7,9 +7,44 @@ from pyramid.view import view_config
 from sqlalchemy.exc import (DBAPIError, IntegrityError)
 from .models import (DBSession, Cliente, Dependente)
 
-# -- Cliente  -- #
-@view_config(route_name='index', renderer='templates/base.jinja2')
+# -- apresentacao -- #
+@view_config(route_name='index', renderer='templates/apresentacao.jinja2')
 def index(request):
+    return {}
+
+@view_config(route_name='slide1', renderer='templates/slides/slide1.jinja2')
+def slide1(request):
+    return {}
+
+@view_config(route_name='slide2', renderer='templates/slides/slide2.jinja2')
+def slide2(request):
+    return {}
+
+@view_config(route_name='slide3', renderer='templates/slides/slide3.jinja2')
+def slide3(request):
+    return {}
+
+@view_config(route_name='slide4', renderer='templates/slides/slide4.jinja2')
+def slide4(request):
+    return {}
+
+@view_config(route_name='slide5', renderer='templates/slides/slide5.jinja2')
+def slide5(request):
+    return {}
+
+@view_config(route_name='slide6', renderer='templates/slides/slide6.jinja2')
+def slide6(request):
+    return {}
+
+@view_config(route_name='slide7', renderer='templates/slides/slide7.jinja2')
+def slide6(request):
+    return {}
+
+
+# ----------------------------------------
+# -- Cliente  -- #
+@view_config(route_name='index_cliente', renderer='templates/base.jinja2')
+def index_cliente(request):
     return {}
 
 @view_config(route_name='inclusao_cliente', renderer='templates/inclusao_cliente.jinja2')
