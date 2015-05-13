@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="${request.locale_name}">
+  <head>
+    <meta charset="utf-8">
+    <script src="{{request.static_url('ppj:static/js/angular.min.js')}}"></script>
+    <script src="{{request.static_url('ppj:static/js/jquery.min.js')}}"></script>
+    <script src="{{request.static_url('ppj:static/js/ppj.js')}}"> </script>
+
+    <link rel="stylesheet" href="{{request.static_url('ppj:static/jquery-ui/jquery-ui.css')}}" />
+<script src="{{request.static_url('ppj:static/jquery-ui/jquery-1.9.1.js')}}"></script>
+<script src="{{request.static_url('ppj:static/jquery-ui/jquery-ui.js')}}"></script>
+
+
+    
+
+    <link href="{{request.static_url('ppj:static/css/default.css')}}" rel="stylesheet">
+
+
+  </head>
+
+  <body >
+    
+    <div id="area_menu">
+      <ul>
+        <li><a href="/">cliente</a> </li>
+        <li><a href="/consulta_dependentes">dependentes</a></li>
+      </ul>
+    </div>
+
+    
+      <div id="area_conteudo" class="painel" >
+      
+       <h2>{% block titulo_painel %}Consulta Clientes:{% endblock %}</h2>
+
+       {% block conteudo_painel %}
+    	 <fieldset  >
+      
+      	 {% include "formulario_cliente.jinja2" %}
+
+          <div class="btn_controle">
+            <input id="incluir" type="button" value="Incluir" />
+            <input id="procurar"  type="button" value="Procurar" />
+            <input id="limpar" type="button" value="Limpar" />
+          </div>          
+       
+    	 </fieldset>
+
+      <div id="result" class="area_resultado">
+      </div> 
+      {% endblock %}
+      </div >     
+
+  </body>
+
+</html>
+

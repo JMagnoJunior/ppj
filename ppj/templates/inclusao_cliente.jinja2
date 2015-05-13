@@ -1,0 +1,20 @@
+{% extends "base.jinja2" %}
+{% block titulo_painel %} Inclusao de Cliente {% endblock %}
+{% block conteudo_painel %}
+<fieldset>
+	{% include "formulario_cliente.jinja2" %}
+	
+	<a id="add_dependente" href="#">add dependentes</a>
+
+	<div id="dependentes">
+	</div>
+
+	<br />
+	<div class="btn_controle">
+            <input id="gravar" type="button" value="Gravar" />
+            <input id="cancelar"  type="button" value="Cancelar" />            
+    </div>     
+</fieldset>
+<div id="resultado">
+</div>
+{% endblock %}

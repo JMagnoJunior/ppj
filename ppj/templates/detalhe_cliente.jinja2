@@ -1,0 +1,13 @@
+
+<label>Nome:</label> {{cliente.nome}} ;  <label>Data de Nascimento:</label> {{cliente.data_nascimento}}  <br /> 
+<label>Sexo:</label> {{cliente.sexo}} ; <label> Estado Civil:</label> {{cliente.estado_civil}} 
+
+<hr />
+<label>Dependentes</label><br / >
+<ul>
+{% for dependente in cliente.dependentes %}
+    <li>{{dependente.nome}} - {{dependente.sexo}}  </li >
+{% else %}
+	 - Nenhum dependente encontrado -
+{% endfor %}
+</ul>

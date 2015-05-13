@@ -1,0 +1,64 @@
+<script>
+
+$(".visualizar").click(function() {
+	
+	 	
+
+  	   $.ajax({url: "cliente/"+$(this).attr("name")
+	   	, success: function(result){   	   
+        	$("#result_visualizacao").html(result);
+        	
+        	$( "#mensagem" ).dialog({ width: 700 });
+       }});
+        
+
+});
+
+
+$(".editar").click(function() {
+	$.ajax({
+		   	type:'POST',
+		   	url: "/editar/cliente/"+$(this).attr("name"),
+		   	contentType: 'application/json; charset=utf-8',
+		   	data: JSON.stringify({ nome: $("#nome_"+$(this).attr("name")).val(), 
+		   	                      data_nascimento: $("#data_nascimento_"+$(this).attr("name")).val(),
+		   	                      sexo:$("#sexo_"+$(this).attr("name")).val(),
+		   	                      estado_civil:$("#estado_civil_"+$(this).attr("name")).val() }),
+		   	success: function(result){  
+		   	
+	        	$("#resultado_edicao").html(result)
+	         },	         
+	        });	 	
+
+
+  
+
+});
+
+</script>
+
+
+<table>
+	{% for cliente in clientes %}
+	<tr>
+	 	<td><a class="visualizar" href="#" name="{{cliente.nome}}"> visualizar </a></td>
+	 	<td><a  class="editar" href="#" name="{{cliente.id}}">editar</a></td>
+	    <td><input type="text" value="{{cliente.nome}}" id="nome_{{cliente.id}}" /> </td>
+	    <td><input type="text" value="{{cliente.data_nascimento}}" id="data_nascimento_{{cliente.id}}" /> </td>
+	    <td><input type="text" value="{{cliente.sexo}}"  id="sexo_{{cliente.id}}"/> </td>
+	    <td><input type="text" value="{{cliente.estado_civil}}" id="estado_civil_{{cliente.id}}"/> </td>
+	</tr>
+	{% endfor %}
+</table>
+
+<div id="mensagem" title="Detalhe do Cliente" style="display:none">	
+    <div id="result_visualizacao">
+
+    </div>
+</div>
+
+<div id="resultado_edicao">
+</div>
+
+
+

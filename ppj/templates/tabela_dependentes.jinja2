@@ -1,0 +1,19 @@
+<table>
+	{% for dependente in dependentes %}
+	<tr>	 	
+	 	<td><a  class="editar" href="#" name="{{dependente.id}}">editar</a></td>
+	    <td><input type="text" value="{{dependente.nome}}" id="nome_{{dependente.id}}" /> </td>
+	    <td><input type="text" value="{{dependente.sexo}}"  id="sexo_{{dependente.id}}"/> </td>
+	    <td>{{dependente.dono_conta.nome}} </td>	    
+	</tr>
+	{% endfor %}
+</table>
+
+<div id="mensagem" title="Detalhe do Dependente" style="display:none">	
+    <div id="result_visualizacao">
+
+    </div>
+</div>
+
+<div id="resultado_edicao">
+</div>
