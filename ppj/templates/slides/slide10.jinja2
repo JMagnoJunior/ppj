@@ -1,0 +1,23 @@
+{% extends "../apresentacao.jinja2" %}
+{% block titulo_slide %} Utilizar Web Services em Python {% endblock %}
+
+{%block conteudo %}
+<p>É simples como escrever:</p>
+<div class="codigo">
+<br />
+import suds<br /><br />
+cliente = suds.client.Client("https://jhom2.correiosnet.int/produtoservice/produtoService/produtoWS?wsdl ",username="XXX",password="XXX") <br />
+produto = cliente.service.consultaProduto(codigoProduto="40010") <br />
+print produto.descricaoProduto <br />
+<br />
+</div>
+
+{% endblock %}
+
+{% block proxima_pagina %}
+slide10
+{% endblock %}
+
+{% block pagina_anterior %}
+slide9
+{% endblock %}

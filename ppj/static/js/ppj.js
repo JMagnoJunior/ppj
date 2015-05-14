@@ -40,7 +40,7 @@ app.controller('clienteCtrl',  function($scope) {
 
 	   $.ajax({url: "/add_dependente"
 	   	, success: function(result){  
-        	$("#dependentes").append(result+"<br />");
+        	$("#dependentes").append(result+"<br /><hr />");
        }});	
 
    });

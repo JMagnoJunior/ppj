@@ -30,7 +30,8 @@ def lista_clientes(request):
 
     query = DBSession.query(Cliente)
     query = query.filter(Cliente.nome.contains(nome)) if nome is not u'' else query
-    query = query.filter(Cliente.data_nascimento == data_nascimento) if data_nascimento is not u'' else query
+    query = query.filter(Cliente.data_nascimento == data_nascimento) if \
+                                 data_nascimento is not u'' else query
     query = query.filter(Cliente.sexo == sexo) if sexo is not u'' else query
     query = query.filter(Cliente.estado_civil == estado_civil) if estado_civil is not u'' else query
 
@@ -45,7 +46,7 @@ def detalhe_cliente(request):
     nome = request.matchdict['nome']
 
     query = DBSession.query(Cliente)
-    query = query.filter(Cliente.nome.contains(nome)) if nome is not u'' else query
+    query = query.filter(Cliente.nome == nome) if nome is not u'' else query
 
     cliente = query.one()
 

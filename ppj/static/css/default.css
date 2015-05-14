@@ -81,3 +81,12 @@
 .erro{
 	color:red;
 }
+
+.codigo{
+	background-color: lightgrey;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 13px;
+	font-weight: lighter;
+	font-family: monospace;
+}
