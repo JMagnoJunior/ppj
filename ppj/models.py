@@ -22,7 +22,7 @@ class Cliente(Base):
 
     id = Column(Integer, primary_key=True)
     nome = Column(Unicode, unique=True)
-    __data_nascimento = Column('data_nascimento',Date)
+    _data_nascimento = Column('data_nascimento',Date)
     sexo = Column(Unicode)
     estado_civil = Column(Unicode)
     dependentes = relationship("Dependente", backref="dono_conta")
@@ -43,14 +43,14 @@ class Cliente(Base):
 
     @property
     def data_nascimento(self):
-        return self.__data_nascimento
+        return self._data_nascimento
 
     @data_nascimento.setter
     def data_nascimento(self, value):
         from util import formata_data
-        self.__data_nascimento = formata_data(value)     
+        self._data_nascimento = formata_data(value)     
 
-    data_nascimento = synonym('__data_nascimento', descriptor=data_nascimento)
+    data_nascimento = synonym('_data_nascimento', descriptor=data_nascimento)
 
     @property
     def e_cliente_especial(self):
