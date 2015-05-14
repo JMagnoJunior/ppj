@@ -13,6 +13,7 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
     config.include('pyramid_jinja2')
     config.add_static_view('static', 'static', cache_max_age=3600)
+    # Slides
     config.add_route('index', '/')
     config.add_route('slide1', 'slide1')
     config.add_route('slide2', 'slide2')
@@ -23,6 +24,7 @@ def main(global_config, **settings):
     config.add_route('slide7', 'slide7')
     config.add_route('slide8', 'slide8')
     config.add_route('slide9', 'slide9')
+    # PPJ - Python
     config.add_route('index_cliente', 'index_cliente')
     config.add_route('clientes', 'clientes')
     config.add_route('inclusao_cliente', 'incluir/cliente')
