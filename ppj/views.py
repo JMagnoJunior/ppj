@@ -6,7 +6,8 @@ from pyramid.view import view_config
 from sqlalchemy.exc import (DBAPIError, IntegrityError)
 from .models import (DBSession, Cliente, Dependente)
 
-# ----------------------------------------
+#pylint --disable=E1101
+
 # -- Cliente  -- #
 @view_config(route_name='index_cliente', renderer='templates/base.jinja2')
 def index_cliente(request):
@@ -22,6 +23,8 @@ def add_dependente(request):
 
 @view_config(route_name='clientes', renderer='templates/tabela_cliente.jinja2')
 def lista_clientes(request):
+    """Lista os clientes por nome, data_nascimento, sexo ou estado civil
+    """
     nome, data_nascimento = request.GET['nome'], request.GET['data_nascimento']
     sexo, estado_civil = request.GET['sexo'], request.GET['estado_civil']
 
@@ -37,6 +40,8 @@ def lista_clientes(request):
 
 @view_config(route_name='cliente', renderer='templates/detalhe_cliente.jinja2')
 def detalhe_cliente(request):
+    """Exibe os dados detalhados do cliente
+    """
     nome = request.matchdict['nome']
 
     query = DBSession.query(Cliente)
@@ -48,6 +53,8 @@ def detalhe_cliente(request):
 
 @view_config(route_name='inclui_cliente', renderer='templates/resultado.jinja2')
 def inclui_cliente(request):
+    """Cadastra um cliente com dependentes    
+    """
     nome, data_nascimento = request.json_body['nome'], request.json_body['data_nascimento']
     sexo, estado_civil = request.json_body['sexo'],  request.json_body['estado_civil']
     print request.json_body['dependentes']
@@ -59,10 +66,12 @@ def inclui_cliente(request):
     with transaction.manager:   
         DBSession.add(cliente)
 
-    return {"mensagem_sucesso":u'registro gravado com sucesso'}
+    return {"mensagem_sucesso": u'registro gravado com sucesso'}
 
 @view_config(route_name='edita_cliente', renderer='templates/resultado.jinja2')
 def edita_cliente(request):
+    """Edita o nome, sexo, estado civil ou data de data_nascimentode um cliente
+    """
     id = request.matchdict["id"]
     nome, sexo = request.json_body['nome'], request.json_body['sexo']
     estado_civil, data_nascimento = request.json_body['estado_civil'], request.json_body['data_nascimento']
@@ -73,15 +82,17 @@ def edita_cliente(request):
 
     DBSession.flush()
 
-    return {"mensagem_sucesso":u'registro gravado com sucesso'}
+    return {"mensagem_sucesso": u'registro gravado com sucesso'}
 
-# -- dependentes -- #
+# -- Dependentes -- #
 @view_config(route_name='consulta_dependentes', renderer='templates/consulta_dependentes.jinja2')
 def consulta_dependentes(request):
     return {}
 
 @view_config(route_name='dependentes', renderer='templates/tabela_dependentes.jinja2')
 def lista_dependentes(request):
+    """Lista todos os dependentes por nome ou sexo
+    """
     nome, sexo = request.GET['nome'], request.GET['sexo']
 
     query = DBSession.query(Dependente)
@@ -92,14 +103,17 @@ def lista_dependentes(request):
 
     return {"dependentes":dependentes}
 
-# --- Tratamento de Erro -- #
-
+# -- Tratamento de Erro -- #
 @view_config(context=DBAPIError, renderer="templates/resultado.jinja2")
 def falha_erro_conexao(exc, request):
+    """Redireciona para um template a mensagem de erro caso ocorra falha na conexão com o banco
+    """
     print exc
-    return {"mensagem_erro":u'Ocorreu um erro de conexão com o banco!'}
+    return {"mensagem_erro": u'Ocorreu um erro de conexão com o banco!'}
 
 @view_config(context=IntegrityError, renderer="templates/resultado.jinja2")
 def falha_registro_cadastrado(exc, request):
-    print exc +"???"
-    return {"mensagem_erro":u'Registro já cadastrado!'}
+    """Redireciona para um template a mensagem de erro caso ocorra registro duplicado
+    """
+    print exc
+    return {"mensagem_erro": u'Registro já cadastrado!'}

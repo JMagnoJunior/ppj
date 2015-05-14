@@ -8,16 +8,13 @@ from sqlalchemy.orm import relationship
 from datetime import date
 from ppj.util import enum
 
-
-#-----------------------
-
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
-#-----------------------
-# Isso é um ENUM!
+# -- Enums -- #
 Sexo = enum(MASCULINO='M', FEMININO='F')
 
+# -- Classes -- #
 class Cliente(Base):
     """Representa os clientes da empresa
     """
@@ -87,6 +84,3 @@ class Dependente(Base):
         """ Retorna um dicionario para facilitar a adaptação da classe para json
         """
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}  
-
-#-----------------
-

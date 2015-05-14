@@ -42,7 +42,7 @@ class TestClientes(unittest.TestCase):
         request.matchdict['nome'] = "Wellington"
         result = detalhe_cliente(request)
         self.assertEqual(result['cliente'].nome,'Wellington')
-        self.assertEqual(result['cliente'].data_nascimento, datetime.date(2000,1,1))
+        self.assertEqual(result['cliente'].data_nascimento, datetime.date(2000, 1, 1))
         self.assertEqual(result['cliente'].sexo,'M')
         self.assertEqual(result['cliente'].estado_civil,'Casado')
 
@@ -75,55 +75,35 @@ class TestClientes(unittest.TestCase):
         result = inclui_cliente(request)
         self.assertEqual(result['mensagem_sucesso'], u'registro gravado com sucesso')
 
+    def test_deve_editar_cliente(self):
+        from .views import edita_cliente
+        request_body = {
+            'nome': u'Wellington',
+            'sexo': u'M',
+            'estado_civil': u'Casado',
+            'data_nascimento': u'2000-01-01',
+        }
+        request = testing.DummyRequest(json_body = request_body, method = 'POST')
+        request.matchdict["id"] = 1
+        result = edita_cliente(request)
+        self.assertEqual(result['mensagem_sucesso'], u'registro gravado com sucesso')
+
+    def test_nao_deve_editar_cliente_com_nome_duplicado(self):
+        from .views import edita_cliente
+        from sqlalchemy.exc import IntegrityError
+        request_body = {
+            'nome': u'Joao',
+            'sexo': u'M',
+            'estado_civil': u'Casado',
+            'data_nascimento': u'2000-01-01',
+        }
+        request = testing.DummyRequest(json_body = request_body, method = 'POST')
+        request.matchdict["id"] = 1
+        self.assertRaises(IntegrityError,edita_cliente,request)        
+
 class TestUtil(unittest.TestCase):
 
     def test_deve_formatar_data(self):
         from .util import formata_data
         data = '2010-01-01'
         self.assertEqual(formata_data(data), datetime.date(2010, 1, 1))
-        
-        #self.assertEqual(isinstance(Sexo,type('Enum')),True)
-
-
-# class TestMyViewSuccessCondition(unittest.TestCase):
-#     def setUp(self):
-#         self.config = testing.setUp()
-#         from sqlalchemy import create_engine
-#         engine = create_engine('sqlite://')
-#         from .models import ( Base, MyModel, )        
-#         DBSession.configure(bind=engine)
-#         Base.metadata.create_all(engine)
-#         with transaction.manager:
-#             model = MyModel(name='one', value=55)
-#             DBSession.add(model)
-
-#     def tearDown(self):
-#         DBSession.remove()
-#         testing.tearDown()
-
-#     def test_passing_view(self):
-#         from .views import my_view
-#         request = testing.DummyRequest()
-#         info = my_view(request)
-#         self.assertEqual(info['one'].name, 'one')
-#         self.assertEqual(info['project'], 'PPJ')
-
-
-# class TestMyViewFailureCondition(unittest.TestCase):
-#     def setUp(self):
-#         self.config = testing.setUp()
-#         from sqlalchemy import create_engine
-#         engine = create_engine('sqlite://')
-#         from .models import (Base, MyModel, )
-#         DBSession.configure(bind=engine)
-
-#     def tearDown(self):
-#         DBSession.remove()
-#         testing.tearDown()
-
-#     def test_failing_view(self):
-#         from .views import my_view
-#         request = testing.DummyRequest()
-#         info = my_view(request)
-#         self.assertEqual(info.status_int, 500)
-
