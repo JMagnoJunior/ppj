@@ -2,7 +2,7 @@
 """ Este modulo contém as regras de negócio do sistema """
 from sqlalchemy import (Column, Index, Integer, Unicode, Date, ForeignKey)
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import (scoped_session, sessionmaker)
+from sqlalchemy.orm import (scoped_session, sessionmaker, synonym)
 from zope.sqlalchemy import ZopeTransactionExtension
 from sqlalchemy.orm import relationship
 from datetime import date
@@ -25,21 +25,17 @@ class Cliente(Base):
 
     id = Column(Integer, primary_key=True)
     nome = Column(Unicode, unique=True)
-    data_nascimento = Column(Date)
+    __data_nascimento = Column('data_nascimento',Date)
     sexo = Column(Unicode)
     estado_civil = Column(Unicode)
     dependentes = relationship("Dependente", backref="dono_conta")
-
+    
     def __init__(self, nome, data_nascimento, sexo, estado_civil):
         """O construtor da classe exige que seja informado
            o nome, data_nascimento, sexo e estado estadocivil do cliente
         """
         self.nome = nome
-        if type(data_nascimento) is not date :
-            data_split = data_nascimento.split('-')
-            self.data_nascimento = date(int(data_split[0]), int(data_split[1]), int(data_split[2]))
-        else:
-            self.data_nascimento = data_nascimento
+        self.data_nascimento = data_nascimento
         self.sexo = sexo
         self.estado_civil = estado_civil
 
@@ -48,11 +44,23 @@ class Cliente(Base):
         """
         return {c.name: str(getattr(self, c.name)) for c in self.__table__.columns}
 
+    @property
+    def data_nascimento(self):
+        return self.__data_nascimento
+
+    @data_nascimento.setter
+    def data_nascimento(self, value):
+        from util import formata_data
+        self.__data_nascimento = formata_data(value)     
+
+    data_nascimento = synonym('__data_nascimento', descriptor=data_nascimento)
+
+    @property
     def e_cliente_especial(self):
         """
         Se a idade do cliente for maior que 18 anos, entao ele deve ser considerado e_adulto.
         >>> c = Cliente('Wellington','1990-01-01','M','Solteiro')
-        >>> c.e_cliente_especial()
+        >>> c.e_cliente_especial
         True
         """
         if self.data_nascimento >= date(1970, 01, 01):
