@@ -80,7 +80,7 @@ class TestUtil(unittest.TestCase):
     def test_deve_formatar_data(self):
         from .util import formata_data
         data = '2010-01-01'
-        self.assertEqual(formata_data(data), datetime.date(2010,1,1))
+        self.assertEqual(formata_data(data), datetime.date(2010, 1, 1))
         
         #self.assertEqual(isinstance(Sexo,type('Enum')),True)
 
