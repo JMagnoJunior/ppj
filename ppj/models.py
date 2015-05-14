@@ -60,11 +60,8 @@ class Cliente(Base):
         >>> c.e_cliente_especial
         True
         """
-        if self.data_nascimento >= date(1970, 01, 01):
-            return True
-        else :
-            return False
-
+        result = True if self.data_nascimento >= date(1970, 01, 01) else False
+        return result            
 
 class Dependente(Base):
     """Representa os dependentes dos clientes
