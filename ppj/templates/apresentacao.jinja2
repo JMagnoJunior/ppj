@@ -3,33 +3,40 @@
   <head>
     <meta charset="utf-8">
     <link href="{{request.static_url('ppj:static/css/default.css')}}" rel="stylesheet">
+    <script src="{{request.static_url('ppj:static/js/jquery.min.js')}}"></script>
+    <script src="{{request.static_url('ppj:static/js/slide.js')}}"></script>
   </head>
 
   <body >
-  	<div>
+  	<div id="conteudo_slide">
   		<br />
   		<br />
   		<br />
   		<center>
-  			<h2>{% block titulo_slide %}A linguagem Python! {% endblock %}</h2> <br />
+  			<h2 style="color:blue; text-shadow: 2px 2px 2px #ccc; ">{% block titulo_slide %}A linguagem Python! {% endblock %}</h2> <br />
 		</center>
-  	{%block conteudo %}  	
+    <hr />
+  	{%block conteudo %}
+      	
   	<center>
 	  	<a href="slide1">
 	  		<img src="{{request.static_url('ppj:static/img/mpython.jpg')}}" />
 	  	</a>
 	</center>
+
 	{% endblock %}
-
-
-	<a href="{% block pagina_anterior %} {% endblock%}" style="float:left">
-	  		<img src="{{request.static_url('ppj:static/img/voltar.jpeg')}}" />
-	 </a>  		
-	<a href="{% block proxima_pagina %} slide1 {% endblock%}" style="float:right">
-	  		<img src="{{request.static_url('ppj:static/img/seta.jpeg')}}" />
-	 </a>
+<hr />
 
   </div>
+
+    <div id="controle_slide">
+      <a href="{% block pagina_anterior %} {% endblock%}" style="float:left">
+            <img src="{{request.static_url('ppj:static/img/voltar.jpg')}}" />
+       </a>     
+      <a href="{% block proxima_pagina %} slide1 {% endblock%}" style="float:right">
+            <img src="{{request.static_url('ppj:static/img/seta.jpg')}}" />
+       </a>
+    </div>
   	
   </body>
 </html>

@@ -8,7 +8,7 @@ from pyramid.view import view_config
 def index(request):
     return {}
 
-@view_config(route_name='slide1', renderer='templates/slides/slide1.jinja2') 
+@view_config(route_name='slide1', renderer='templates/slides/slide1.jinja2')
 def slide1(request):
     return {}
 
@@ -38,12 +38,25 @@ def slide7(request):
 
 @view_config(route_name='slide8', renderer='templates/slides/slide8.jinja2')
 def slide8(request):
-    return {}    
+    return {}
 
 @view_config(route_name='slide9', renderer='templates/slides/slide9.jinja2')
 def slide9(request):
-    return {}   
+    return {}
 
 @view_config(route_name='slide10', renderer='templates/slides/slide10.jinja2')
 def slide10(request):
-    return {}    
+    return {}
+
+@view_config(route_name='fim', renderer='templates/slides/fim.jinja2')
+def fim(request):
+    return {}
+
+@view_config(route_name='produto_ws', renderer='templates/slides/detalhe_produto.jinja2')
+def exemplo_web_service(request):
+    #import suds
+    #cliente = suds.client.Client("https://jhom2.correiosnet.int/produtoservice/produtoService/produtoWS?wsdl ", \
+    #                             username = "9571", password = "bcsteste")
+    #produto = cliente.service.consultaProduto(codigoProduto = request.matchdict["codigo_produto"])
+    produto = 'teste'
+    return {"produto":produto}

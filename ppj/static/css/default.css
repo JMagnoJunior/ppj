@@ -90,3 +90,14 @@
 	font-weight: lighter;
 	font-family: monospace;
 }
+
+#controle_slide{
+	position: absolute;
+	width: 100%;
+
+}
+
+#conteudo_slide{
+	height: 600px;
+
+}

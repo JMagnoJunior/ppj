@@ -1,11 +1,27 @@
 {% extends "../apresentacao.jinja2" %}
-{% block titulo_slide %} Integração Continua  {% endblock %}
+
+{% block titulo_slide %} Chamando Web Services em Python {% endblock %}
 
 {%block conteudo %}
-<ul>
-	<li>Jenkins!</li>
-</ul>
+<script>
 
+
+</script>
+
+<p>É simples como escrever:</p>
+<div class="codigo">
+<br />
+import suds<br /><br />
+cliente = suds.client.Client("https://jhom2.correiosnet.int/produtoservice/produtoService/produtoWS?wsdl ", username="XXX", password="XXX") <br />
+produto = cliente.service.consultaProduto(codigoProduto="<input id="codigo_produto" type="text" style="width:40px;" />") <br />
+print produto.descricaoProduto <br />
+<br />
+<span style="color:green;font-weight: bold;" ><span id="resultado_ws" > </span> </span>
+</div>
+
+<br />
+
+<button id="executar_ws">Executar</button>
 {% endblock %}
 
 {% block proxima_pagina %}

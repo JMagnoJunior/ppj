@@ -48,14 +48,14 @@ class Cliente(Base):
     @data_nascimento.setter
     def data_nascimento(self, value):
         from util import formata_data
-        self._data_nascimento = formata_data(value)     
+        self._data_nascimento = formata_data(value)             
 
     data_nascimento = synonym('_data_nascimento', descriptor=data_nascimento)
 
     @property
     def e_cliente_especial(self):
         """
-        Se a idade do cliente for maior que 18 anos, entao ele deve ser considerado e_adulto.
+        Se o cliente tiver nascido depois de 1970, então ele é um cliente especial.
         >>> c = Cliente('Wellington','1990-01-01','M','Solteiro')
         >>> c.e_cliente_especial
         True

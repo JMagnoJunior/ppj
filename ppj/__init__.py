@@ -25,6 +25,7 @@ def main(global_config, **settings):
     config.add_route('slide8', 'slide8')
     config.add_route('slide9', 'slide9')
     config.add_route('slide10', 'slide10')
+    config.add_route('fim', 'fim')
     # PPJ - Python
     config.add_route('index_cliente', 'index_cliente')
     config.add_route('clientes', 'clientes')
@@ -35,6 +36,7 @@ def main(global_config, **settings):
     config.add_route('edita_cliente', 'editar/cliente/{id}')
     config.add_route('consulta_dependentes', 'consulta_dependentes')
     config.add_route('dependentes', 'dependentes')
+    config.add_route('produto_ws', 'produto/{codigo_produto}')
 
     config.scan()
     return config.make_wsgi_app()

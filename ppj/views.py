@@ -104,6 +104,7 @@ def lista_dependentes(request):
 
     return {"dependentes":dependentes}
 
+
 # -- Tratamento de Erro -- #
 @view_config(context=DBAPIError, renderer="templates/resultado.jinja2")
 def falha_erro_conexao(exc, request):
